@@ -1,0 +1,18 @@
+{
+	"extension": {
+		"version": "0.6.1",
+		"json": 2
+	},
+	"project": {
+		"name": "VEX_Python_test",
+		"description": "",
+		"creationDate": "12/6/2024, 8:51:20 AM",
+		"platform": "V5",
+		"language": "python",
+		"slot": 5,
+		"sdkVersion": "V5_1_0_1_25",
+		"python": {
+			"main": "src/main.py"
+		}
+	}
+}
