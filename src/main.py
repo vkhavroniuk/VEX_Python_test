@@ -1,3 +1,12 @@
+__author__ = "Volodymyr Khavroniuk"
+__license__ = "MIT"
+__version__ = "1.0"
+__email__ = "vkhavroniuk@gmail.com"
+
+"""
+    VEX V5 Robot Code for Woodcrest School scrimmage Robot.
+"""
+
 # Library imports
 from vex import *
 
