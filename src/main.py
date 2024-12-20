@@ -23,7 +23,7 @@ right_motors = MotorGroup(right_motor_b, right_motor_b,right_motor_t)
 
 # smartdrive
 # smartdrive = SmartDrive(left_motors, right_motors, brain_inertial, wheelTravel, trackWidth, wheelBase, INCHES, externalGearRatio)
-smartdrive = SmartDrive(left_motors, right_motors, brain_inertial, 156, 340, 230, MM, 0.6)
+# smartdrive = SmartDrive(left_motors, right_motors, brain_inertial, 156, 340, 230, MM, 0.6)
 
 
 # Clamp and Scoring mech
@@ -131,16 +131,13 @@ class Robot:
         self.left_motors.spin(FORWARD, 0)
         self.right_motors.spin(FORWARD, 0)        
 
+# create my_robot object for autonomous
 my_robot = Robot(left_motors, right_motors, brain_inertial, 3.25, 0.6)
 
 def set_initial_params():
     """ Set initial params
     """
     brain_inertial.set_heading(90)
-    # P - Gain. Smartdrive uses simple P controller
-    smartdrive.set_turn_constant(0.5)
-    # Exit Error
-    smartdrive.set_turn_threshold(2)
 
 
 def calibrate_inertial():
@@ -246,62 +243,5 @@ calibrate_inertial()
 set_initial_params()
 
 thread = Thread(show_me_info)
-
-
-class AdvancedAddressableLed(AddressableLed):
-    pass
-
-    def all_red(self):
-        self.set([Color(0x800000)] * 60)
-
-    def all_green(self):
-        self.set([Color(0x008000)] * 60)
-
-    def all_blue(self):
-        self.set([Color(0x1414e5)] * 60)
-
-    def rotate(self, data):
-        data[:] = data[1:] + data[:1]
-        self.set(data)
-
-led=AdvancedAddressableLed(brain.three_wire_port.b)
-
-# 60 led colors
-
-c=[Color(127,25,25),
-   Color(127,76,25),
-   Color(127,176,45),
-   Color(173,176,45),
-   Color(40,76,165),
-   Color(176,72,72)
-  ] * 10
-
-def led_run():
-    led.clear()
-    sleep(1500)
-    led.all_blue()
-    sleep(1500)
-    led.all_red()
-    sleep(1500)
-    led.all_green()
-    sleep(1500)
-    led.clear()
-    sleep(500)
-
-    colors = []
-    for n in range(60):
-        colors.append(Color(176,72,72))
-        led.set(colors, 0)
-        sleep(50)
-
-    led.clear()
-    sleep(500)
-
-    while True:
-        led.rotate(c)
-        sleep(500)
-
-led_run()
-
 
 
